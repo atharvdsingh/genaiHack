@@ -39,6 +39,17 @@ Create quiz in a concise tabular format""",
 
 )
 
+frontend_quiz_agent=Agent(
+    name='FrontendQuizAgent',
+    model='gemini-2.5-flash',
+    instruction="""Take the weakness_finding_subject: {weakness_finding_subject} and the quiz generated on the this weak subject and make both of them list of dictionaries as output for this agent
+
+""",
+    output_key='frontend_quiz_dict',
+
+
+)
+
 
 
 
@@ -48,5 +59,5 @@ Create quiz in a concise tabular format""",
 
 root_agent = SequentialAgent(
     name='TeacherAgent',
-    sub_agents=[report_analyze_agent, weakness_detector_agent, quiz_generator_agent],
+    sub_agents=[report_analyze_agent, weakness_detector_agent, quiz_generator_agent,frontend_quiz_agent],
 )
